@@ -4,12 +4,14 @@ import org.adventofcode.utils.Day;
 
 import java.util.List;
 
-public class Day01 extends Day {
+public class Day01 {
 
     public static void main(String[] args) {
         System.out.println("Hello, Advent of Code Day 01!");
-        Day01 day01 = new Day01();
-        List<String> input = day01.readFile("day01");
+        // Day day01 = new Day("example/day01");
+        Day day01 = new Day("actual/day01");
+
+        List<String> input = day01.readFile();
 
         input.forEach(System.out::println);
     }
