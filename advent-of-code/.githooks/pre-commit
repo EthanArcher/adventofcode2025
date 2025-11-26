@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "Reformatting your code"
+mvn spotless:apply
