@@ -17,4 +17,9 @@ public abstract class Day {
     public List<String> readFile() {
         return Utilities.readFileToListOfStrings(inputFileType.getPath() + day);
     }
+
+    public String readFileAsString() {
+        return Utilities.readFileToString(inputFileType.getPath() + day);
+    }
+
 }
