@@ -13,7 +13,7 @@ public class Day01 extends Day {
         super(DAY, inputFileType);
     }
 
-    public void run() {
+    public long[] run() {
         List<String> input = readFile();
         List<Integer> values = input.stream().map(Order::new).map(Order::getAmount).toList();
 
@@ -56,6 +56,9 @@ public class Day01 extends Day {
         System.out.println();
         System.out.println("Part One: " + landedOnZeroCounter);
         System.out.println("Part Two: " + (landedOnZeroCounter + rolloverCounter + fullRotationsCounter));
+
+        return new long[]{landedOnZeroCounter, (landedOnZeroCounter + rolloverCounter + fullRotationsCounter)};
+
     }
 
     private static int wrapPosition(int position) {

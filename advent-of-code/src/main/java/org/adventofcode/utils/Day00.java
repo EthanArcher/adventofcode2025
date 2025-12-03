@@ -8,5 +8,8 @@ public class Day00 extends Day {
         super(DAY, inputFileType);
     }
 
-    public void run() {}
+    public long[] run() {
+
+        return new long[]{0, 0};
+    }
 }

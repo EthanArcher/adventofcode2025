@@ -15,7 +15,7 @@ public class Day02 extends Day {
         super(DAY, inputFileType);
     }
 
-    public void run() {
+    public long[] run() {
 
         String input = readFileAsString();
         List<ProductId> productIds = Arrays.stream(input.split(","))
@@ -35,6 +35,8 @@ public class Day02 extends Day {
 
         System.out.println("Total invalid IDs P1: " + totalP1);
         System.out.println("Total invalid IDs P2: " + totalP2);
+
+        return new long[]{totalP1, totalP2};
 
     }
 }

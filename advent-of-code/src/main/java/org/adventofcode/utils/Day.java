@@ -7,7 +7,7 @@ public abstract class Day {
     private final String day;
     private final InputFileType inputFileType;
 
-    public abstract void run();
+    public abstract long[] run();
 
     public Day(String day, InputFileType inputFileType) {
         this.day = day;

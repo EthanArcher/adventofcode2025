@@ -5,21 +5,24 @@ import org.junit.jupiter.api.Test;
 
 import static org.adventofcode.utils.InputFileType.ACTUAL;
 import static org.adventofcode.utils.InputFileType.EXAMPLE;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Day2Test {
 
     @Test
     void testAgainstExampleInput() {
         Day day02 = new Day02(EXAMPLE);
-        day02.run();
+        long[] result = day02.run();
+        assertEquals(1227775554, result[0]);
+        assertEquals(4174379265L, result[1]);
     }
 
     @Test
     void testAgainstActualInput() {
         Day day02 = new Day02(ACTUAL);
-        day02.run();
+        long[] result = day02.run();
+        assertEquals(19128774598L, result[0]);
+        assertEquals(21932258645L, result[1]);
     }
 
     @Test

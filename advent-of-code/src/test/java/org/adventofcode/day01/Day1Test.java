@@ -1,24 +1,28 @@
 package org.adventofcode.day01;
 
+import org.adventofcode.utils.Day;
+import org.junit.jupiter.api.Test;
+
 import static org.adventofcode.utils.InputFileType.ACTUAL;
 import static org.adventofcode.utils.InputFileType.EXAMPLE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.adventofcode.utils.Day;
-import org.junit.jupiter.api.Test;
 
 public class Day1Test {
 
     @Test
     void testAgainstExampleInput() {
         Day day01 = new Day01(EXAMPLE);
-        day01.run();
+        long[] result = day01.run();
+        assertEquals(3, result[0]);
+        assertEquals(6, result[1]);
     }
 
     @Test
     void testAgainstActualInput() {
         Day day01 = new Day01(ACTUAL);
-        day01.run();
+        long[] result = day01.run();
+        assertEquals(962, result[0]);
+        assertEquals(5782, result[1]);
     }
 
     @Test
