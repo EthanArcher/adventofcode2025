@@ -7,7 +7,7 @@ import static org.adventofcode.utils.InputFileType.ACTUAL;
 import static org.adventofcode.utils.InputFileType.EXAMPLE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Day1Test {
+public class Day01Test {
 
     @Test
     void testAgainstExampleInput() {

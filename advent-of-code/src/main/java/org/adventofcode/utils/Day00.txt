@@ -1,5 +1,8 @@
 package org.adventofcode.utils;
 
+import org.adventofcode.utils.Day;
+import org.adventofcode.utils.InputFileType;
+
 public class Day00 extends Day {
 
     private static final String DAY = "day00";
