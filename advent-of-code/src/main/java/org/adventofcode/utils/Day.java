@@ -1,5 +1,6 @@
 package org.adventofcode.utils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,6 +36,26 @@ public abstract class Day {
             }
         }
         return grid;
+    }
+
+    public List<List<String>> readFileInSections() {
+        List<String> input = readFile();
+        List<String> firstSection = new ArrayList<>();
+        List<String> secondSection = new ArrayList<>();
+        boolean inFirst = true;
+
+        for (String line : input) {
+            if (inFirst && line.isEmpty()) {
+                inFirst = false;
+                continue;
+            }
+            if (inFirst) {
+                firstSection.add(line);
+            } else {
+                secondSection.add(line);
+            }
+        }
+        return List.of(firstSection, secondSection);
     }
 
     public char[][] deepCopyGrid(char[][] grid) {
