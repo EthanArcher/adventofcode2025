@@ -16,7 +16,7 @@ public abstract class Day {
         this.inputFileType = inputFileType;
     }
 
-    public List<String> readFile() {
+    public List<String> readFileAsLines() {
         return Utilities.readFileToListOfStrings(inputFileType.getPath() + day);
     }
 
@@ -25,7 +25,7 @@ public abstract class Day {
     }
 
     public char[][] readFileAsGrid() {
-        List<String> lines = readFile();
+        List<String> lines = readFileAsLines();
         if (lines.isEmpty()) return new char[0][0];
         int maxLen = lines.stream().mapToInt(String::length).max().orElse(0);
         char[][] grid = new char[lines.size()][maxLen];
@@ -39,7 +39,7 @@ public abstract class Day {
     }
 
     public List<List<String>> readFileInSections() {
-        List<String> input = readFile();
+        List<String> input = readFileAsLines();
         List<String> firstSection = new ArrayList<>();
         List<String> secondSection = new ArrayList<>();
         boolean inFirst = true;

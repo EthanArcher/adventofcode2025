@@ -19,7 +19,7 @@ public class Day06 extends Day {
 
     public long[] run() {
 
-        List<String> lines = readFile();
+        List<String> lines = readFileAsLines();
         List<char[]> linesAsChars = lines.stream()
                 .map(String::toCharArray)
                 .toList();

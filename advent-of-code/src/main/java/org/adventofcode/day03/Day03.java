@@ -15,7 +15,7 @@ public class Day03 extends Day {
     }
 
     public long[] run() {
-        List<String> input = readFile();
+        List<String> input = readFileAsLines();
 
         long part1Total = 0;
         long part2Total = 0;

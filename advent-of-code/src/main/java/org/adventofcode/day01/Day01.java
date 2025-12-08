@@ -14,7 +14,7 @@ public class Day01 extends Day {
     }
 
     public long[] run() {
-        List<String> input = readFile();
+        List<String> input = readFileAsLines();
         List<Integer> values = input.stream().map(Order::new).map(Order::getAmount).toList();
 
         int position = 50; // The dial starts by pointing at 50.
