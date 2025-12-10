@@ -3,10 +3,7 @@ package org.adventofcode.day09;
 import org.adventofcode.utils.Day;
 import org.adventofcode.utils.InputFileType;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Set;
+import java.util.*;
 
 public class Day09 extends Day {
 
@@ -31,6 +28,9 @@ public class Day09 extends Day {
         PriorityQueue<TiledArea> tiledAreasAllInside = new PriorityQueue<>((a, b) -> Long.compare(b.area(), a.area()));
         Set<Position2D> greenTiles = new HashSet<>();
 
+        List<List<Position2D>> verticals = new ArrayList<>();
+        List<List<Position2D>> horizontals = new ArrayList<>();
+
         for (int i = 0; i < positions.size(); i++) {
             Position2D pos1 = positions.get(i);
             Position2D pos2 = positions.get((i + 1) % positions.size());
@@ -44,6 +44,15 @@ public class Day09 extends Day {
                 }
             }
             greenTiles.add(positions.get(i));
+
+            if (pos1.x() == pos2.x()) {
+                // Vertical line
+                verticals.add(List.of(pos1, pos2));
+            } else if (pos1.y() == pos2.y()) {
+                // Horizontal line
+                horizontals.add(List.of(pos1, pos2));
+            }
+
         }
 
 
@@ -67,15 +76,90 @@ public class Day09 extends Day {
         while (!tiledAreas.isEmpty()) {
             TiledArea tiledArea = tiledAreas.poll(); // removes and returns the largest area
             System.out.println(tiledArea.area());
-            if (allRectangleEdgesInside(tiledArea.position1(), tiledArea.position2(), positions, greenTiles)) {
+
+            if (!rectangleHasInterception(tiledArea.position1(), tiledArea.position2(), verticals, horizontals)) {
                 largestTiledAreaInside = tiledArea;
                 break;
             }
+
+//            if (allRectangleEdgesInside(tiledArea.position1(), tiledArea.position2(), positions, greenTiles)) {
+//                largestTiledAreaInside = tiledArea;
+//                break;
+//            }
         }
 
         System.out.println(largestTiledAreaInside);
 
         return new long[]{largestTiledArea.area(), largestTiledAreaInside.area()};
+    }
+
+    private boolean rectangleHasInterception(Position2D start, Position2D end, List<List<Position2D>> verticals, List<List<Position2D>> horizontals) {
+        int left = Math.min(start.x(), end.x());
+        int right = Math.max(start.x(), end.x());
+        int top = Math.min(start.y(), end.y());
+        int bottom = Math.max(start.y(), end.y());
+
+        // Check that the other corners are inside the polygon
+        // use raycast to check if the corners are inside the polygon
+        int corner1Counter = 0;
+        int corner2Counter = 0;
+        Position2D corner1 = new Position2D(start.x(), end.y());
+        Position2D corner2 = new Position2D(end.x(), start.y());
+
+        for (List<Position2D> line : verticals) {
+            int x = line.get(0).x();
+            int y1 = line.get(0).y();
+            int y2 = line.get(1).y();
+            int minY = Math.min(y1, y2);
+            int maxY = Math.max(y1, y2);
+
+            if (x > corner1.x() && corner1.y() > minY && corner1.y() < maxY) {
+                corner1Counter++;
+            }
+            if (x > corner2.x() && corner2.y() > minY && corner2.y() < maxY) {
+                corner2Counter++;
+            }
+        }
+        // if its even then the corner is outside
+        if ((corner1Counter % 2) == 0 || (corner2Counter % 2) == 0) {
+//            System.out.println("invalid corners for rectangle: Corner1: " + corner1 + " was: " + corner1Counter + " Corner2: " + corner2 + " was: " + corner2Counter);
+//            System.out.println();
+            return true;
+        }
+
+        // Check vertical lines
+        for (List<Position2D> line : verticals) {
+            int yMin = Math.min(line.get(0).y(), line.get(1).y());
+            int yMax = Math.max(line.get(0).y(), line.get(1).y());
+            if (line.get(0).x() >= left && line.get(0).x() <= right) {
+                // check top
+                if (yMin < top && yMax > top) {
+                    return true;
+                }
+                // check bottom
+                if (yMin < bottom && yMax > bottom) {
+                    return true;
+                }
+            }
+        }
+
+        // Check horizontal lines
+        for (List<Position2D> line : horizontals) {
+            int xMin = Math.min(line.get(0).x(), line.get(1).x());
+            int xMax = Math.max(line.get(0).x(), line.get(1).x());
+            if (line.get(0).y() >= top && line.get(0).y() <= bottom) {
+                // check top
+                if (xMin < left && xMax > left) {
+                    return true;
+                }
+                // check bottom
+                if (xMin < right && xMax > right) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
 
