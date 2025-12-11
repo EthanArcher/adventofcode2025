@@ -74,11 +74,11 @@ public class Day10Test {
         // Use ILP to solve: minimize sum(x) subject to A*x = b, x >= 0, x integer
         int[] solution = solveWithILP(A, b);
 
-        System.out.println("ILP Solution: " + java.util.Arrays.toString(solution));
+//        System.out.println("ILP Solution: " + java.util.Arrays.toString(solution));
 
         // Verify the solution
         int totalPresses = java.util.Arrays.stream(solution).sum();
-        System.out.println("Total button presses: " + totalPresses);
+//        System.out.println("Total button presses: " + totalPresses);
 
         // Check that total is optimal (there may be multiple optimal solutions)
         assertEquals(10, totalPresses);

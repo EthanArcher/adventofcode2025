@@ -53,7 +53,6 @@ public class Day01 extends Day {
 //            System.out.println();
         }
 
-        System.out.println();
         System.out.println("Part One: " + landedOnZeroCounter);
         System.out.println("Part Two: " + (landedOnZeroCounter + rolloverCounter + fullRotationsCounter));
 

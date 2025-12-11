@@ -54,13 +54,13 @@ public class Day09 extends Day {
         }
 
         TiledArea largestTiledArea = tiledAreas.peek();
-        System.out.println(largestTiledArea);
+//        System.out.println(largestTiledArea);
 
         TiledArea largestTiledAreaInside = null;
 
         while (!tiledAreas.isEmpty()) {
             TiledArea tiledArea = tiledAreas.poll(); // removes and returns the largest area
-            System.out.println(tiledArea.area());
+//            System.out.println(tiledArea.area());
 
             if (validRectangle(tiledArea.position1(), tiledArea.position2(), verticals, horizontals, positions)) {
                 largestTiledAreaInside = tiledArea;
@@ -68,7 +68,7 @@ public class Day09 extends Day {
             }
         }
 
-        System.out.println(largestTiledAreaInside);
+//        System.out.println(largestTiledAreaInside);
 
         return new long[]{largestTiledArea.area(), largestTiledAreaInside.area()};
     }
@@ -89,7 +89,7 @@ public class Day09 extends Day {
             if (xPosition > left && xPosition < right) {
                 // Check if the line segment overlaps with rectangle's y-range
                 if (Math.max(top, yMin) < Math.min(bottom, yMax)) {
-                    System.out.println("Vertical boundary at x=" + xPosition + " overlaps rectangle");
+//                    System.out.println("Vertical boundary at x=" + xPosition + " overlaps rectangle");
                     return false;
                 }
             }
@@ -105,7 +105,7 @@ public class Day09 extends Day {
             if (yPosition > top && yPosition < bottom) {
                 // Check if the line segment overlaps with rectangle's x-range
                 if (Math.max(left, xMin) < Math.min(right, xMax)) {
-                    System.out.println("Horizontal boundary at y=" + yPosition + " overlaps rectangle");
+//                    System.out.println("Horizontal boundary at y=" + yPosition + " overlaps rectangle");
                     return false;
                 }
             }
