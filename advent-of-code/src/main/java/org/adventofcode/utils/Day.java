@@ -40,23 +40,28 @@ public abstract class Day {
 
     public List<List<String>> readFileInSections() {
         List<String> input = readFileAsLines();
-        List<String> firstSection = new ArrayList<>();
-        List<String> secondSection = new ArrayList<>();
-        boolean inFirst = true;
+        List<List<String>> sections = new ArrayList<>();
+        List<String> section = new ArrayList<>();
 
         for (String line : input) {
-            if (inFirst && line.isEmpty()) {
-                inFirst = false;
-                continue;
-            }
-            if (inFirst) {
-                firstSection.add(line);
+            if (line.isEmpty()) {
+                if (!section.isEmpty()) {
+                    sections.add(section);
+                    section = new ArrayList<>();
+                }
             } else {
-                secondSection.add(line);
+                section.add(line);
             }
         }
-        return List.of(firstSection, secondSection);
+
+        // Add the last section if it's not empty
+        if (!section.isEmpty()) {
+            sections.add(section);
+        }
+
+        return sections;
     }
+
 
     public char[][] deepCopyGrid(char[][] grid) {
         char[][] copy = new char[grid.length][];
